@@ -1,1 +1,1 @@
-{"version":3,"file":"useStateWithAwait.d.ts","sourceRoot":"","sources":["../../../../../src/hooks/useStateWithAwait.ts"],"names":[],"mappings":"AAEA;;GAEG;AACH,eAAO,MAAM,iBAAiB,GAAI,CAAC,sBACnB,CAAC,KACd,CAAC,CAAC,EAAE,CAAC,QAAQ,EAAE,CAAC,KAAK,OAAO,CAAC,IAAI,CAAC,CAsBpC,CAAC"}
+{"version":3,"file":"useStateWithAwait.d.ts","sourceRoot":"","sources":["../../../../../src/hooks/useStateWithAwait.ts"],"names":[],"mappings":"AAEA;;;;;GAKG;AACH,eAAO,MAAM,iBAAiB,GAAI,CAAC,sBACnB,CAAC,KACd,CAAC,CAAC,EAAE,CAAC,QAAQ,EAAE,CAAC,KAAK,OAAO,CAAC,IAAI,CAAC,CAsBpC,CAAC"}

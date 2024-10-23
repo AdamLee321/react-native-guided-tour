@@ -1,28 +1,31 @@
 import { useEffect, useRef, useState } from 'react';
 
 /**
- * A hook like useState that allows you to use await the setter
+ * A hook that provides a state setter that can be awaited.
+ *
+ * @param initialState The initial value of the state.
+ * @returns A tuple containing the current state and a setter function that returns a Promise.
  */
 export const useStateWithAwait = <T = any>(
   initialState: T
 ): [T, (newValue: T) => Promise<void>] => {
-  const endPending = useRef(() => {});
-  const newDesiredValue = useRef(initialState);
-
-  const [state, setState] = useState(initialState);
+  const resolvePending = useRef<() => void>(() => {});
+  const nextDesiredValue = useRef<T>(initialState);
+  const [state, setState] = useState<T>(initialState);
 
   const setStateWithAwait = async (newState: T) => {
-    const pending = new Promise<void>((resolve) => {
-      endPending.current = resolve;
+    nextDesiredValue.current = newState;
+    setState(newState); // Update state immediately
+
+    // Create a promise that will resolve when the state updates
+    await new Promise<void>((resolve) => {
+      resolvePending.current = resolve;
     });
-    newDesiredValue.current = newState;
-    setState(newState);
-    await pending;
   };
 
   useEffect(() => {
-    if (state === newDesiredValue.current) {
-      endPending.current();
+    if (state === nextDesiredValue.current) {
+      resolvePending.current(); // Resolve if the state matches the desired state
     }
   }, [state]);
 
