@@ -16,7 +16,7 @@ export interface Step {
   text: string;
 }
 
-export interface CopilotContext {
+export interface TourGuideContext {
   registerStep: (step: Step) => void;
   unregisterStep: (name: string) => void;
   getCurrentStep: () => Step | undefined;
@@ -63,7 +63,7 @@ export interface MaskProps {
   currentStep: Step;
 }
 
-export interface CopilotOptions {
+export interface TourGuideOptions {
   easing?: ((value: number) => number) | undefined;
   overlay?: 'svg' | 'view';
   animationDuration?: number;

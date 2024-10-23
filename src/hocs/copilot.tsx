@@ -1,14 +1,14 @@
 import { type FunctionComponent, type ComponentType } from 'react';
-import { CopilotProvider, useCopilot } from '../contexts/CopilotProvider';
-import { type CopilotOptions } from '../types';
+import { TourGuideProvider, useTourGuide } from '../contexts/TourGuideProvider';
+import { type TourGuideOptions } from '../types';
 
-const ComponentWithCopilotContext = (WrappedComponent: ComponentType) => {
+const ComponentWithTourGuideContext = (WrappedComponent: ComponentType) => {
   const Component: FunctionComponent<any> = (props) => {
-    const copilot = useCopilot();
-    return <WrappedComponent {...props} {...copilot} />;
+    const TourGuide = useTourGuide();
+    return <WrappedComponent {...props} {...TourGuide} />;
   };
 
-  Component.displayName = `CopilotInjector(${
+  Component.displayName = `TourGuideInjector(${
     WrappedComponent.displayName ?? WrappedComponent.name ?? 'Component'
   })`;
 
@@ -16,22 +16,22 @@ const ComponentWithCopilotContext = (WrappedComponent: ComponentType) => {
 };
 
 /**
- * @deprecated The HOC is deprecated. Please use `CopilotProvider` instead.
+ * @deprecated The HOC is deprecated. Please use `TourGuideProvider` instead.
  */
-export function copilot<P = any>(options: CopilotOptions) {
+export function TourGuide<P = any>(options: TourGuideOptions) {
   return (WrappedComponent: ComponentType) => {
     const OuterComponent: FunctionComponent<P> = (props) => {
-      const InnerComponentWithCopilotContext =
-        ComponentWithCopilotContext(WrappedComponent);
+      const InnerComponentWithTourGuideContext =
+        ComponentWithTourGuideContext(WrappedComponent);
 
       return (
-        <CopilotProvider {...options}>
-          <InnerComponentWithCopilotContext {...props} />
-        </CopilotProvider>
+        <TourGuideProvider {...options}>
+          <InnerComponentWithTourGuideContext {...props} />
+        </TourGuideProvider>
       );
     };
 
-    OuterComponent.displayName = `copilot(${
+    OuterComponent.displayName = `TourGuide(${
       WrappedComponent.displayName ?? WrappedComponent.name ?? 'Component'
     })`;
 

@@ -1,7 +1,7 @@
 import { type FunctionComponent, type ComponentType } from 'react';
-import { type CopilotOptions } from '../types';
+import { type TourGuideOptions } from '../types';
 /**
- * @deprecated The HOC is deprecated. Please use `CopilotProvider` instead.
+ * @deprecated The HOC is deprecated. Please use `TourGuideProvider` instead.
  */
-export declare function copilot<P = any>(options: CopilotOptions): (WrappedComponent: ComponentType) => FunctionComponent<P>;
+export declare function TourGuide<P = any>(options: TourGuideOptions): (WrappedComponent: ComponentType) => FunctionComponent<P>;
 //# sourceMappingURL=copilot.d.ts.map

@@ -10,13 +10,13 @@ import {
 } from 'react';
 import { findNodeHandle, type ScrollView } from 'react-native';
 import {
-  CopilotModal,
-  type CopilotModalHandle,
-} from '../components/CopilotModal';
+  TourGuideModal,
+  type TourGuideModalHandle,
+} from '../components/TourGuideModal';
 import { OFFSET_WIDTH } from '../components/style';
 import { useStateWithAwait } from '../hooks/useStateWithAwait';
 import { useStepsMap } from '../hooks/useStepsMap';
-import { type CopilotOptions, type Step } from '../types';
+import { type TourGuideOptions, type Step } from '../types';
 
 type Events = {
   start: undefined;
@@ -24,7 +24,7 @@ type Events = {
   stepChange: Step | undefined;
 };
 
-interface CopilotContextType {
+interface TourGuideContextType {
   registerStep: (step: Step) => void;
   unregisterStep: (stepName: string) => void;
   currentStep: Step | undefined;
@@ -37,7 +37,7 @@ interface CopilotContextType {
   goToNth: (n: number) => Promise<void>;
   goToPrev: () => Promise<void>;
   visible: boolean;
-  copilotEvents: Emitter<Events>;
+  TourGuideEvents: Emitter<Events>;
   isFirstStep: boolean;
   isLastStep: boolean;
   currentStepNumber: number;
@@ -50,16 +50,18 @@ At 60fps means 2 seconds
 */
 const MAX_START_TRIES = 120;
 
-const CopilotContext = createContext<CopilotContextType | undefined>(undefined);
+const TourGuideContext = createContext<TourGuideContextType | undefined>(
+  undefined
+);
 
-export const CopilotProvider = ({
+export const TourGuideProvider = ({
   verticalOffset = 0,
   children,
   ...rest
-}: PropsWithChildren<CopilotOptions>) => {
+}: PropsWithChildren<TourGuideOptions>) => {
   const startTries = useRef(0);
-  const copilotEvents = useRef(mitt<Events>()).current;
-  const modal = useRef<CopilotModalHandle | null>(null);
+  const TourGuideEvents = useRef(mitt<Events>()).current;
+  const modal = useRef<TourGuideModalHandle | null>(null);
 
   const [visible, setVisibility] = useStateWithAwait(false);
   const [scrollView, setScrollView] = useState<ScrollView | null>(null);
@@ -101,7 +103,7 @@ export const CopilotProvider = ({
   const setCurrentStep = useCallback(
     async (step?: Step, move: boolean = true) => {
       setCurrentStepState(step);
-      copilotEvents.emit('stepChange', step);
+      TourGuideEvents.emit('stepChange', step);
 
       if (scrollView != null) {
         const nodeHandle = findNodeHandle(scrollView);
@@ -125,7 +127,7 @@ export const CopilotProvider = ({
         scrollView != null ? 100 : 0
       );
     },
-    [copilotEvents, moveModalToStep, scrollView, setCurrentStepState]
+    [TourGuideEvents, moveModalToStep, scrollView, setCurrentStepState]
   );
 
   const start = useCallback(
@@ -147,7 +149,7 @@ export const CopilotProvider = ({
           void start(fromStep);
         });
       } else {
-        copilotEvents.emit('start');
+        TourGuideEvents.emit('start');
         await setCurrentStep(currentStep);
         await moveModalToStep(currentStep);
         await setVisibility(true);
@@ -155,7 +157,7 @@ export const CopilotProvider = ({
       }
     },
     [
-      copilotEvents,
+      TourGuideEvents,
       getFirstStep,
       moveModalToStep,
       scrollView,
@@ -167,8 +169,8 @@ export const CopilotProvider = ({
 
   const stop = useCallback(async () => {
     await setVisibility(false);
-    copilotEvents.emit('stop');
-  }, [copilotEvents, setVisibility]);
+    TourGuideEvents.emit('stop');
+  }, [TourGuideEvents, setVisibility]);
 
   const next = useCallback(async () => {
     await setCurrentStep(getNextStep());
@@ -193,7 +195,7 @@ export const CopilotProvider = ({
       start,
       stop,
       visible,
-      copilotEvents,
+      TourGuideEvents,
       goToNext: next,
       goToNth: nth,
       goToPrev: prev,
@@ -209,7 +211,7 @@ export const CopilotProvider = ({
       start,
       stop,
       visible,
-      copilotEvents,
+      TourGuideEvents,
       next,
       nth,
       prev,
@@ -221,19 +223,19 @@ export const CopilotProvider = ({
   );
 
   return (
-    <CopilotContext.Provider value={value}>
+    <TourGuideContext.Provider value={value}>
       <>
-        <CopilotModal ref={modal} {...rest} />
+        <TourGuideModal ref={modal} {...rest} />
         {children}
       </>
-    </CopilotContext.Provider>
+    </TourGuideContext.Provider>
   );
 };
 
-export const useCopilot = () => {
-  const value = useContext(CopilotContext);
+export const useTourGuide = () => {
+  const value = useContext(TourGuideContext);
   if (value == null) {
-    throw new Error('You must wrap your app inside CopilotProvider');
+    throw new Error('You must wrap your app inside TourGuideProvider');
   }
 
   return value;

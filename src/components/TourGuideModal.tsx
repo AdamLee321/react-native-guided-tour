@@ -18,8 +18,8 @@ import {
   type LayoutRectangle,
   type ViewStyle,
 } from 'react-native';
-import { useCopilot } from '../contexts/CopilotProvider';
-import type { CopilotOptions } from '../types';
+import { useTourGuide } from '../contexts/TourGuideProvider';
+import type { TourGuideOptions } from '../types';
 import { StepNumber } from './default-ui/StepNumber';
 import { Tooltip } from './default-ui/Tooltip';
 import {
@@ -30,7 +30,7 @@ import {
   styles,
 } from './style';
 
-type Props = CopilotOptions;
+type Props = TourGuideOptions;
 
 const noop = () => {};
 
@@ -41,12 +41,12 @@ const makeDefaultLayout = (): LayoutRectangle => ({
   height: 0,
 });
 
-export interface CopilotModalHandle {
+export interface TourGuideModalHandle {
   animateMove: (obj: LayoutRectangle) => Promise<void>;
 }
 
-export const CopilotModal = forwardRef<CopilotModalHandle, Props>(
-  function CopilotModal(
+export const TourGuideModal = forwardRef<TourGuideModalHandle, Props>(
+  function TourGuideModal(
     {
       easing = Easing.elastic(0.7),
       animationDuration = 400,
@@ -73,7 +73,7 @@ export const CopilotModal = forwardRef<CopilotModalHandle, Props>(
     },
     ref
   ) {
-    const { stop, currentStep, visible } = useCopilot();
+    const { stop, currentStep, visible } = useTourGuide();
     const [tooltipStyles, setTooltipStyles] = useState({});
     const [arrowStyles, setArrowStyles] = useState({});
     const [animatedValues] = useState({
@@ -230,7 +230,7 @@ export const CopilotModal = forwardRef<CopilotModalHandle, Props>(
       ]
     );
 
-    const animateMove = useCallback<CopilotModalHandle['animateMove']>(
+    const animateMove = useCallback<TourGuideModalHandle['animateMove']>(
       async (rect) => {
         await new Promise<void>((resolve) => {
           const frame = async () => {

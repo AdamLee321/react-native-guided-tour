@@ -1,1 +1,0 @@
-{"version":3,"file":"CopilotModal.d.ts","sourceRoot":"","sources":["../../../../../src/components/CopilotModal.tsx"],"names":[],"mappings":"AAQA,OAAO,EASL,KAAK,eAAe,EAErB,MAAM,cAAc,CAAC;AAEtB,OAAO,KAAK,EAAE,cAAc,EAAE,MAAM,UAAU,CAAC;AAsB/C,MAAM,WAAW,kBAAkB;IACjC,WAAW,EAAE,CAAC,GAAG,EAAE,eAAe,KAAK,OAAO,CAAC,IAAI,CAAC,CAAC;CACtD;AAED,eAAO,MAAM,YAAY,+GAqTxB,CAAC"}

@@ -10,45 +10,45 @@ import {
   View,
 } from 'react-native';
 import {
-  CopilotProvider,
-  CopilotStep,
+  TourGuideProvider,
+  TourGuideStep,
   walkthroughable,
-  useCopilot,
+  useTourGuide,
 } from 'react-native-tour-guide';
 
 const WalkthroughableText = walkthroughable(Text);
 const WalkthroughableImage = walkthroughable(Image);
 
 function App() {
-  const { start, copilotEvents } = useCopilot();
+  const { start, TourGuideEvents } = useTourGuide();
   const [secondStepActive, setSecondStepActive] = useState(true);
   const [lastEvent, setLastEvent] = useState(null);
 
   useEffect(() => {
-    copilotEvents.on('stepChange', (step) => {
+    TourGuideEvents.on('stepChange', (step) => {
       setLastEvent(`stepChange: ${step.name}`);
     });
-    copilotEvents.on('start', () => {
+    TourGuideEvents.on('start', () => {
       setLastEvent(`start`);
     });
-    copilotEvents.on('stop', () => {
+    TourGuideEvents.on('stop', () => {
       setLastEvent(`stop`);
     });
-  }, [copilotEvents]);
+  }, [TourGuideEvents]);
 
   return (
     <SafeAreaView style={styles.container}>
-      <CopilotStep
+      <TourGuideStep
         text="Hey! This is the first step of the tour!"
         order={1}
         name="openApp"
       >
         <WalkthroughableText style={styles.title}>
-          {'Welcome to the demo of\n"React Native Copilot"'}
+          {'Welcome to the demo of\n"React Native TourGuide"'}
         </WalkthroughableText>
-      </CopilotStep>
+      </TourGuideStep>
       <View style={styles.middleView}>
-        <CopilotStep
+        <TourGuideStep
           active={secondStepActive}
           text="Here goes your profile picture!"
           order={2}
@@ -56,11 +56,11 @@ function App() {
         >
           <WalkthroughableImage
             source={{
-              uri: 'https://pbs.twimg.com/profile_images/527584017189982208/l3wwN-l-_400x400.jpeg',
+              uri: 'https://images.pexels.com/photos/11608681/pexels-photo-11608681.jpeg',
             }}
             style={styles.profilePhoto}
           />
-        </CopilotStep>
+        </TourGuideStep>
         <View style={styles.activeSwitchContainer}>
           <Text>Profile photo step activated?</Text>
           <View style={{ flexGrow: 1 }} />
@@ -80,7 +80,7 @@ function App() {
         </View>
       </View>
       <View style={styles.row}>
-        <CopilotStep
+        <TourGuideStep
           text="Here is an item in the corner of the screen."
           order={3}
           name="thirdText"
@@ -88,7 +88,7 @@ function App() {
           <WalkthroughableText style={styles.tabItem}>
             <Ionicons name="apps" size={25} color="#888" />
           </WalkthroughableText>
-        </CopilotStep>
+        </TourGuideStep>
 
         <Ionicons
           style={styles.tabItem}
@@ -120,9 +120,9 @@ function App() {
 }
 
 const AppwithProvider = () => (
-  <CopilotProvider stopOnOutsideClick androidStatusBarVisible>
+  <TourGuideProvider stopOnOutsideClick androidStatusBarVisible>
     <App />
-  </CopilotProvider>
+  </TourGuideProvider>
 );
 
 export default AppwithProvider;

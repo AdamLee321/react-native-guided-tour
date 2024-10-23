@@ -1,22 +1,34 @@
-"use strict";
-
 import React, { useEffect, useMemo, useRef } from 'react';
-import { useCopilot } from "../contexts/CopilotProvider.js";
-export const CopilotStep = ({
+import { type NativeMethods } from 'react-native';
+
+import { useTourGuide } from '../contexts/TourGuideProvider';
+
+interface Props {
+  name: string;
+  order: number;
+  text: string;
+  children: React.ReactElement<any>;
+  active?: boolean;
+}
+
+export const TourGuideStep = ({
   name,
   order,
   text,
   children,
-  active = true
-}) => {
-  const registeredName = useRef(null);
-  const {
-    registerStep,
-    unregisterStep
-  } = useCopilot();
-  const wrapperRef = React.useRef(null);
+  active = true,
+}: Props) => {
+  const registeredName = useRef<string | null>(null);
+  const { registerStep, unregisterStep } = useTourGuide();
+  const wrapperRef = React.useRef<NativeMethods | null>(null);
+
   const measure = async () => {
-    return await new Promise(resolve => {
+    return await new Promise<{
+      x: number;
+      y: number;
+      width: number;
+      height: number;
+    }>((resolve) => {
       const measure = () => {
         // Wait until the wrapper element appears
         if (wrapperRef.current != null && 'measure' in wrapperRef.current) {
@@ -25,16 +37,18 @@ export const CopilotStep = ({
               x,
               y,
               width,
-              height
+              height,
             });
           });
         } else {
           requestAnimationFrame(measure);
         }
       };
+
       measure();
     });
   };
+
   useEffect(() => {
     if (active) {
       if (registeredName.current && registeredName.current !== name) {
@@ -46,11 +60,12 @@ export const CopilotStep = ({
         order,
         measure,
         wrapperRef,
-        visible: true
+        visible: true,
       });
       registeredName.current = name;
     }
   }, [name, order, text, registerStep, unregisterStep, active]);
+
   useEffect(() => {
     if (active) {
       return () => {
@@ -61,12 +76,14 @@ export const CopilotStep = ({
     }
     return undefined;
   }, [name, unregisterStep, active]);
-  const copilotProps = useMemo(() => ({
-    ref: wrapperRef,
-    onLayout: () => {} // Android hack
-  }), []);
-  return /*#__PURE__*/React.cloneElement(children, {
-    copilot: copilotProps
-  });
+
+  const TourGuideProps = useMemo(
+    () => ({
+      ref: wrapperRef,
+      onLayout: () => {}, // Android hack
+    }),
+    []
+  );
+
+  return React.cloneElement(children, { TourGuide: TourGuideProps });
 };
-//# sourceMappingURL=CopilotStep.js.map

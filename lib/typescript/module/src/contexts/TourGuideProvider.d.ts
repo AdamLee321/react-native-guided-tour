@@ -1,13 +1,13 @@
 import { type Emitter } from 'mitt';
 import { type PropsWithChildren } from 'react';
 import { type ScrollView } from 'react-native';
-import { type CopilotOptions, type Step } from '../types';
+import { type TourGuideOptions, type Step } from '../types';
 type Events = {
     start: undefined;
     stop: undefined;
     stepChange: Step | undefined;
 };
-interface CopilotContextType {
+interface TourGuideContextType {
     registerStep: (step: Step) => void;
     unregisterStep: (stepName: string) => void;
     currentStep: Step | undefined;
@@ -17,13 +17,13 @@ interface CopilotContextType {
     goToNth: (n: number) => Promise<void>;
     goToPrev: () => Promise<void>;
     visible: boolean;
-    copilotEvents: Emitter<Events>;
+    TourGuideEvents: Emitter<Events>;
     isFirstStep: boolean;
     isLastStep: boolean;
     currentStepNumber: number;
     totalStepsNumber: number;
 }
-export declare const CopilotProvider: ({ verticalOffset, children, ...rest }: PropsWithChildren<CopilotOptions>) => import("react/jsx-runtime").JSX.Element;
-export declare const useCopilot: () => CopilotContextType;
+export declare const TourGuideProvider: ({ verticalOffset, children, ...rest }: PropsWithChildren<TourGuideOptions>) => import("react/jsx-runtime").JSX.Element;
+export declare const useTourGuide: () => TourGuideContextType;
 export {};
-//# sourceMappingURL=CopilotProvider.d.ts.map
+//# sourceMappingURL=TourGuideProvider.d.ts.map

@@ -5,11 +5,11 @@ import { Button } from './Button';
 import { styles } from '../style';
 
 import type { TooltipProps } from '../../types';
-import { useCopilot } from '../../contexts/CopilotProvider';
+import { useTourGuide } from '../../contexts/TourGuideProvider';
 
 export const Tooltip = ({ labels }: TooltipProps) => {
   const { goToNext, goToPrev, stop, currentStep, isFirstStep, isLastStep } =
-    useCopilot();
+    useTourGuide();
 
   const handleStop = () => {
     void stop();
