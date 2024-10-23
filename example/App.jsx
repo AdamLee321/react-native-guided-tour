@@ -14,7 +14,7 @@ import {
   CopilotStep,
   walkthroughable,
   useCopilot,
-} from 'react-native-copilot';
+} from 'react-native-tour-guide';
 
 const WalkthroughableText = walkthroughable(Text);
 const WalkthroughableImage = walkthroughable(Image);
