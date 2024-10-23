@@ -27,12 +27,14 @@ export const Tooltip = ({
     void goToPrev();
   };
 
+  console.log('tooltipTextStyle', tooltipTextStyle);
+
   return (
     <View>
       <View style={styles.tooltipContainer}>
         <Text
           testID="stepDescription"
-          style={[styles.tooltipText, { ...tooltipTextStyle }]}
+          style={[styles.tooltipText, tooltipTextStyle]}
         >
           {currentStep?.text}
         </Text>
