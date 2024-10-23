@@ -7,7 +7,7 @@ import { styles } from '../style';
 import type { TooltipProps } from '../../types';
 import { useTourGuide } from '../../contexts/TourGuideProvider';
 
-export const Tooltip = ({ labels }: TooltipProps) => {
+export const Tooltip = ({ labels, color = '#0075C8' }: TooltipProps) => {
   const { goToNext, goToPrev, stop, currentStep, isFirstStep, isLastStep } =
     useTourGuide();
 
@@ -32,21 +32,21 @@ export const Tooltip = ({ labels }: TooltipProps) => {
       <View style={[styles.bottomBar]}>
         {!isLastStep ? (
           <TouchableOpacity onPress={handleStop}>
-            <Button>{labels.skip}</Button>
+            <Button color={color}>{labels.skip}</Button>
           </TouchableOpacity>
         ) : null}
         {!isFirstStep ? (
           <TouchableOpacity onPress={handlePrev}>
-            <Button>{labels.previous}</Button>
+            <Button color={color}>{labels.previous}</Button>
           </TouchableOpacity>
         ) : null}
         {!isLastStep ? (
           <TouchableOpacity onPress={handleNext}>
-            <Button>{labels.next}</Button>
+            <Button color={color}>{labels.next}</Button>
           </TouchableOpacity>
         ) : (
           <TouchableOpacity onPress={handleStop}>
-            <Button>{labels.finish}</Button>
+            <Button color={color}>{labels.finish}</Button>
           </TouchableOpacity>
         )}
       </View>

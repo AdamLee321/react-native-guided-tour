@@ -2,7 +2,8 @@ import { type StyleProp, type ViewStyle, type TextStyle, type TextProps } from '
 type Props = {
     wrapperStyle?: StyleProp<ViewStyle>;
     style?: StyleProp<TextStyle>;
+    color: string;
 } & Omit<TextProps, 'style'>;
-export declare const Button: ({ wrapperStyle, style, ...rest }: Props) => import("react/jsx-runtime").JSX.Element;
+export declare const Button: ({ wrapperStyle, style, color, ...rest }: Props) => import("react/jsx-runtime").JSX.Element;
 export {};
 //# sourceMappingURL=Button.d.ts.map

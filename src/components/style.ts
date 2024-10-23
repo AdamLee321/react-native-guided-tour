@@ -47,7 +47,6 @@ export const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: STEP_NUMBER_RADIUS,
     borderColor: '#FFFFFF',
-    backgroundColor: '#0075C8',
   },
   stepNumberText: {
     fontSize: 10,
@@ -57,9 +56,7 @@ export const styles = StyleSheet.create({
   button: {
     padding: 10,
   },
-  buttonText: {
-    color: '#0075C8',
-  },
+  buttonText: {},
   bottomBar: {
     marginTop: 10,
     flexDirection: 'row',

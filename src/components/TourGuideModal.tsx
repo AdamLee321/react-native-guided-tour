@@ -59,6 +59,7 @@ export const TourGuideModal = forwardRef<TourGuideModalHandle, Props>(
       animated = typeof NativeModules.RNSVGSvgViewManager !== 'undefined',
       androidStatusBarVisible = false,
       backdropColor = 'rgba(0, 0, 0, 0.4)',
+      color = '#0075C8',
       labels = {
         finish: 'Finish',
         next: 'Next',
@@ -338,7 +339,7 @@ export const TourGuideModal = forwardRef<TourGuideModalHandle, Props>(
               },
             ]}
           >
-            <StepNumberComponent />
+            <StepNumberComponent color={color} />
           </Animated.View>
 
           {!!arrowSize && (
@@ -348,7 +349,7 @@ export const TourGuideModal = forwardRef<TourGuideModalHandle, Props>(
             key="tooltip"
             style={[styles.tooltip, tooltipStyles, tooltipStyle]}
           >
-            <TooltipComponent labels={labels} />
+            <TooltipComponent labels={labels} color={color} />
           </Animated.View>
         </>
       );

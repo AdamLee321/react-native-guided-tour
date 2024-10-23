@@ -28,6 +28,7 @@ export type EasingFunction = (value: number) => number;
 export type Labels = Partial<Record<'skip' | 'previous' | 'next' | 'finish', string>>;
 export interface TooltipProps {
     labels: Labels;
+    color?: string;
 }
 export interface MaskProps {
     size: ValueXY;
@@ -62,5 +63,6 @@ export interface TourGuideOptions {
     margin?: number;
     stopOnOutsideClick?: boolean;
     backdropColor?: string;
+    color?: string;
 }
 //# sourceMappingURL=types.d.ts.map

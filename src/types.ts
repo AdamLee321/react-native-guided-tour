@@ -44,6 +44,7 @@ export type Labels = Partial<
 
 export interface TooltipProps {
   labels: Labels;
+  color?: string;
 }
 
 export interface MaskProps {
@@ -80,4 +81,5 @@ export interface TourGuideOptions {
   margin?: number;
   stopOnOutsideClick?: boolean;
   backdropColor?: string;
+  color?: string;
 }
