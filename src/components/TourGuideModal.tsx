@@ -52,6 +52,7 @@ export const TourGuideModal = forwardRef<TourGuideModalHandle, Props>(
       animationDuration = 400,
       tooltipComponent: TooltipComponent = Tooltip,
       tooltipStyle = {},
+      tooltipTextStyle = {},
       stepNumberComponent: StepNumberComponent = StepNumber,
       overlay = typeof NativeModules.RNSVGSvgViewManager !== 'undefined'
         ? 'svg'
@@ -59,13 +60,16 @@ export const TourGuideModal = forwardRef<TourGuideModalHandle, Props>(
       animated = typeof NativeModules.RNSVGSvgViewManager !== 'undefined',
       androidStatusBarVisible = false,
       backdropColor = 'rgba(0, 0, 0, 0.4)',
-      color = '#0075C8',
+      stepStyle = {},
+      stepTextStyle = {},
       labels = {
         finish: 'Finish',
         next: 'Next',
         previous: 'Previous',
         skip: 'Skip',
       },
+      buttonStyle = {},
+      buttonTextStyle = {},
       svgMaskPath,
       stopOnOutsideClick = false,
       arrowColor = '#fff',
@@ -339,7 +343,7 @@ export const TourGuideModal = forwardRef<TourGuideModalHandle, Props>(
               },
             ]}
           >
-            <StepNumberComponent color={color} />
+            <StepNumberComponent style={stepStyle} textStyle={stepTextStyle} />
           </Animated.View>
 
           {!!arrowSize && (
@@ -349,7 +353,12 @@ export const TourGuideModal = forwardRef<TourGuideModalHandle, Props>(
             key="tooltip"
             style={[styles.tooltip, tooltipStyles, tooltipStyle]}
           >
-            <TooltipComponent labels={labels} color={color} />
+            <TooltipComponent
+              labels={labels}
+              tooltipTextStyle={tooltipTextStyle}
+              buttonStyle={buttonStyle}
+              buttonTextStyle={buttonTextStyle}
+            />
           </Animated.View>
         </>
       );

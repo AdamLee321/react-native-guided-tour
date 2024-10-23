@@ -2,6 +2,7 @@ import type {
   Animated,
   LayoutRectangle,
   NativeMethods,
+  TextStyle,
   ViewStyle,
 } from 'react-native';
 
@@ -44,7 +45,9 @@ export type Labels = Partial<
 
 export interface TooltipProps {
   labels: Labels;
-  color?: string;
+  tooltipTextStyle?: TextStyle;
+  buttonStyle?: ViewStyle;
+  buttonTextStyle?: TextStyle;
 }
 
 export interface MaskProps {
@@ -70,6 +73,11 @@ export interface TourGuideOptions {
   animationDuration?: number;
   tooltipComponent?: React.ComponentType<TooltipProps>;
   tooltipStyle?: ViewStyle;
+  tooltipTextStyle?: TextStyle;
+  stepStyle?: ViewStyle;
+  stepTextStyle?: TextStyle;
+  buttonStyle?: ViewStyle;
+  buttonTextStyle?: TextStyle;
   stepNumberComponent?: React.ComponentType<any>;
   animated?: boolean;
   labels?: Labels;
@@ -81,5 +89,4 @@ export interface TourGuideOptions {
   margin?: number;
   stopOnOutsideClick?: boolean;
   backdropColor?: string;
-  color?: string;
 }

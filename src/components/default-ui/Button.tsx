@@ -11,12 +11,12 @@ import { styles } from '../style';
 
 type Props = {
   wrapperStyle?: StyleProp<ViewStyle>;
-  style?: StyleProp<TextStyle>;
-  color: string;
+  style?: StyleProp<ViewStyle>;
+  textStyle: StyleProp<TextStyle>;
 } & Omit<TextProps, 'style'>;
 
-export const Button = ({ wrapperStyle, style, color, ...rest }: Props) => (
-  <View style={[styles.button, wrapperStyle]}>
-    <Text style={[styles.buttonText, { color }, style]} {...rest} />
+export const Button = ({ wrapperStyle, style, textStyle, ...rest }: Props) => (
+  <View style={[styles.button, wrapperStyle, style]}>
+    <Text style={[styles.buttonText, textStyle]} {...rest} />
   </View>
 );

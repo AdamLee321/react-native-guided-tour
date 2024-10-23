@@ -44,6 +44,7 @@ export declare const styles: {
         borderWidth: number;
         borderRadius: number;
         borderColor: string;
+        backgroundColor: string;
     };
     stepNumberText: {
         fontSize: number;
@@ -53,7 +54,9 @@ export declare const styles: {
     button: {
         padding: number;
     };
-    buttonText: {};
+    buttonText: {
+        color: string;
+    };
     bottomBar: {
         marginTop: number;
         flexDirection: "row";

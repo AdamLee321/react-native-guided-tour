@@ -1,4 +1,4 @@
-import type { Animated, LayoutRectangle, NativeMethods, ViewStyle } from 'react-native';
+import type { Animated, LayoutRectangle, NativeMethods, TextStyle, ViewStyle } from 'react-native';
 export type WalktroughedComponent = NativeMethods & React.ComponentType<any>;
 export interface Step {
     name: string;
@@ -28,7 +28,9 @@ export type EasingFunction = (value: number) => number;
 export type Labels = Partial<Record<'skip' | 'previous' | 'next' | 'finish', string>>;
 export interface TooltipProps {
     labels: Labels;
-    color?: string;
+    tooltipTextStyle?: TextStyle;
+    buttonStyle?: ViewStyle;
+    buttonTextStyle?: TextStyle;
 }
 export interface MaskProps {
     size: ValueXY;
@@ -52,6 +54,11 @@ export interface TourGuideOptions {
     animationDuration?: number;
     tooltipComponent?: React.ComponentType<TooltipProps>;
     tooltipStyle?: ViewStyle;
+    tooltipTextStyle?: TextStyle;
+    stepStyle?: ViewStyle;
+    stepTextStyle?: TextStyle;
+    buttonStyle?: ViewStyle;
+    buttonTextStyle?: TextStyle;
     stepNumberComponent?: React.ComponentType<any>;
     animated?: boolean;
     labels?: Labels;
@@ -63,6 +70,5 @@ export interface TourGuideOptions {
     margin?: number;
     stopOnOutsideClick?: boolean;
     backdropColor?: string;
-    color?: string;
 }
 //# sourceMappingURL=types.d.ts.map
