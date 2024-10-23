@@ -27,8 +27,6 @@ export const Tooltip = ({
     void goToPrev();
   };
 
-  console.log('tooltipTextStyle', tooltipTextStyle);
-
   return (
     <View>
       <View style={styles.tooltipContainer}>
