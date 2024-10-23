@@ -1,5 +1,5 @@
-import { StepNumber } from './components/default-ui/StepNumber';
-import { Tooltip } from './components/default-ui/Tooltip';
+import StepNumber from './components/default-ui/StepNumber';
+import Tooltip from './components/default-ui/Tooltip';
 export { walkthroughable } from './hocs/walkthroughable';
 export { TourGuideStep } from './components/TourGuideStep';
 export { TourGuideProvider, useTourGuide } from './contexts/TourGuideProvider';

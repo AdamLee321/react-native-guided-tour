@@ -20,8 +20,8 @@ import {
 } from 'react-native';
 import { useTourGuide } from '../contexts/TourGuideProvider';
 import type { TourGuideOptions } from '../types';
-import { StepNumber } from './default-ui/StepNumber';
-import { Tooltip } from './default-ui/Tooltip';
+import StepNumber from './default-ui/StepNumber';
+import Tooltip from './default-ui/Tooltip';
 import {
   ARROW_SIZE,
   MARGIN,

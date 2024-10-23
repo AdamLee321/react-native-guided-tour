@@ -1,31 +1,22 @@
-import { Text, TouchableOpacity, View } from 'react-native';
-
-import { Button } from './Button';
-
+import React from 'react';
+import { Text, View } from 'react-native';
+import Button from './Button';
 import { styles } from '../style';
-
 import type { TooltipProps } from '../../types';
 import { useTourGuide } from '../../contexts/TourGuideProvider';
 
-export const Tooltip = ({
+const Tooltip: React.FC<TooltipProps> = ({
   labels,
-  tooltipTextStyle,
-  buttonStyle,
-  buttonTextStyle,
-}: TooltipProps) => {
+  tooltipTextStyle = {},
+  buttonStyle = {},
+  buttonTextStyle = {},
+}) => {
   const { goToNext, goToPrev, stop, currentStep, isFirstStep, isLastStep } =
     useTourGuide();
 
-  const handleStop = () => {
-    void stop();
-  };
-  const handleNext = () => {
-    void goToNext();
-  };
-
-  const handlePrev = () => {
-    void goToPrev();
-  };
+  const handleStop = () => stop();
+  const handleNext = () => goToNext();
+  const handlePrev = () => goToPrev();
 
   return (
     <View>
@@ -37,35 +28,45 @@ export const Tooltip = ({
           {currentStep?.text}
         </Text>
       </View>
-      <View style={[styles.bottomBar]}>
+      <View style={styles.bottomBar}>
+        {!isLastStep && (
+          <Button
+            style={buttonStyle}
+            textStyle={buttonTextStyle}
+            onPress={handleStop}
+          >
+            {labels.skip}
+          </Button>
+        )}
+        {!isFirstStep && (
+          <Button
+            style={buttonStyle}
+            textStyle={buttonTextStyle}
+            onPress={handlePrev}
+          >
+            {labels.previous}
+          </Button>
+        )}
         {!isLastStep ? (
-          <TouchableOpacity onPress={handleStop}>
-            <Button style={buttonStyle} textStyle={buttonTextStyle}>
-              {labels.skip}
-            </Button>
-          </TouchableOpacity>
-        ) : null}
-        {!isFirstStep ? (
-          <TouchableOpacity onPress={handlePrev}>
-            <Button style={buttonStyle} textStyle={buttonTextStyle}>
-              {labels.previous}
-            </Button>
-          </TouchableOpacity>
-        ) : null}
-        {!isLastStep ? (
-          <TouchableOpacity onPress={handleNext}>
-            <Button style={buttonStyle} textStyle={buttonTextStyle}>
-              {labels.next}
-            </Button>
-          </TouchableOpacity>
+          <Button
+            style={buttonStyle}
+            textStyle={buttonTextStyle}
+            onPress={handleNext}
+          >
+            {labels.next}
+          </Button>
         ) : (
-          <TouchableOpacity onPress={handleStop}>
-            <Button style={buttonStyle} textStyle={buttonTextStyle}>
-              {labels.finish}
-            </Button>
-          </TouchableOpacity>
+          <Button
+            style={buttonStyle}
+            textStyle={buttonTextStyle}
+            onPress={handleStop}
+          >
+            {labels.finish}
+          </Button>
         )}
       </View>
     </View>
   );
 };
+
+export default React.memo(Tooltip);

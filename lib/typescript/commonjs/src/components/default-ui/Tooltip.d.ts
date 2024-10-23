@@ -1,3 +1,5 @@
+import React from 'react';
 import type { TooltipProps } from '../../types';
-export declare const Tooltip: ({ labels, tooltipTextStyle, buttonStyle, buttonTextStyle, }: TooltipProps) => import("react/jsx-runtime").JSX.Element;
+declare const _default: React.NamedExoticComponent<TooltipProps>;
+export default _default;
 //# sourceMappingURL=Tooltip.d.ts.map

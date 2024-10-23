@@ -1,9 +1,10 @@
 import { type StyleProp, type ViewStyle, type TextStyle, type TextProps } from 'react-native';
+import React from 'react';
 type Props = {
     wrapperStyle?: StyleProp<ViewStyle>;
     style?: StyleProp<ViewStyle>;
-    textStyle: StyleProp<TextStyle>;
+    textStyle?: StyleProp<TextStyle>;
 } & Omit<TextProps, 'style'>;
-export declare const Button: ({ wrapperStyle, style, textStyle, ...rest }: Props) => import("react/jsx-runtime").JSX.Element;
-export {};
+declare const _default: React.NamedExoticComponent<Props>;
+export default _default;
 //# sourceMappingURL=Button.d.ts.map

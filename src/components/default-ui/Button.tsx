@@ -6,17 +6,26 @@ import {
   type TextStyle,
   type TextProps,
 } from 'react-native';
-
+import React from 'react';
 import { styles } from '../style';
 
 type Props = {
   wrapperStyle?: StyleProp<ViewStyle>;
   style?: StyleProp<ViewStyle>;
-  textStyle: StyleProp<TextStyle>;
+  textStyle?: StyleProp<TextStyle>;
 } & Omit<TextProps, 'style'>;
 
-export const Button = ({ wrapperStyle, style, textStyle, ...rest }: Props) => (
-  <View style={[styles.button, wrapperStyle, style]}>
-    <Text style={[styles.buttonText, textStyle]} {...rest} />
-  </View>
-);
+const Button: React.FC<Props> = ({
+  wrapperStyle = {},
+  style = {},
+  textStyle = {},
+  ...rest
+}) => {
+  return (
+    <View style={[styles.button, wrapperStyle, style]}>
+      <Text style={[styles.buttonText, textStyle]} {...rest} />
+    </View>
+  );
+};
+
+export default React.memo(Button);
