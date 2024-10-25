@@ -2,14 +2,14 @@
 
 <div align="center">
   <p align="center">
-    <a href="https://github.com/adamlee321/react-native-tour-guide/actions/workflows/release.yml">
-      <img src="https://img.shields.io/github/actions/workflow/status/mohebifar/react-native-tour-guide/release.yml?branch=master&style=flat-square" alt="Build Status" />
+    <a href="https://github.com/adamlee321/react-native-guided-tour/actions/workflows/release.yml">
+      <img src="https://img.shields.io/github/actions/workflow/status/mohebifar/react-native-guided-tour/release.yml?branch=master&style=flat-square" alt="Build Status" />
     </a>
-    <a href="https://www.npmjs.com/package/react-native-tour-guide">
-      <img src="https://img.shields.io/npm/v/react-native-tour-guide.svg?style=flat-square" alt="NPM Version" />
+    <a href="https://www.npmjs.com/package/react-native-guided-tour">
+      <img src="https://img.shields.io/npm/v/react-native-guided-tour.svg?style=flat-square" alt="NPM Version" />
     </a>
-    <a href="https://www.npmjs.com/package/react-native-tour-guide">
-      <img src="https://img.shields.io/npm/dm/react-native-tour-guide.svg?style=flat-square" alt="NPM Downloads" />
+    <a href="https://www.npmjs.com/package/react-native-guided-tour">
+      <img src="https://img.shields.io/npm/dm/react-native-guided-tour.svg?style=flat-square" alt="NPM Downloads" />
     </a>
   </p>
 </div>
@@ -21,11 +21,11 @@
 ## Installation
 
 ```
-yarn add react-native-tour-guide
+yarn add react-native-guided-tour
 
 # or with npm:
 
-npm install --save react-native-tour-guide
+npm install --save react-native-guided-tour
 ```
 
 **Optional**: If you want to have the smooth SVG animation, you should install and link [`react-native-svg`](https://github.com/software-mansion/react-native-svg).
@@ -35,7 +35,7 @@ npm install --save react-native-tour-guide
 Wrap the portion of your app that you want to use tour guide with inside `<TourGuideProvider>`:
 
 ```js
-import { TourGuideProvider } from 'react-native-tour-guide';
+import { TourGuideProvider } from 'react-native-guided-tour';
 
 const AppWithTourGuide = () => {
   return (
@@ -53,7 +53,7 @@ import {
   TourGuideProvider,
   TourGuideStep,
   walkthroughable,
-} from 'react-native-tour-guide';
+} from 'react-native-guided-tour';
 
 const TourGuideText = walkthroughable(Text);
 
@@ -92,11 +92,11 @@ const HomeScreen = () => {
 };
 ```
 
-If you are looking for a working example, please check out [this link](https://github.com/AdamLee321/react-native-tour-guide/blob/main/example/App.jsx).
+If you are looking for a working example, please check out [this link](https://github.com/AdamLee321/react-native-guided-tour/blob/main/example/App.jsx).
 
 ### Overlays and animation
 
-The overlay in react-native-tour-guide is the component that draws the dark transparent over the screen. react-native-tour-guide comes with two overlay options: `view` and `svg`.
+The overlay in react-native-guided-tour is the component that draws the dark transparent over the screen. react-native-guided-tour comes with two overlay options: `view` and `svg`.
 
 The `view` overlay uses 4 rectangles drawn around the target element using the `<View />` component. We don't recommend using animation with this overlay since it's sluggish on some devices specially on Android.
 
@@ -130,7 +130,7 @@ By default, if overlay is not explicitly specified, the `svg` overlay will be us
 
 ### Custom tooltip and step number UI components
 
-You can customize the tooltip and the step number components by passing a component to the `TourGuideProvider` component. If you are looking for an example tooltip component, take a look at [the default ui implementations](https://github.com/mohebifar/react-native-tour-guide/blob/master/src/components/default-ui).
+You can customize the tooltip and the step number components by passing a component to the `TourGuideProvider` component. If you are looking for an example tooltip component, take a look at [the default ui implementations](https://github.com/mohebifar/react-native-guided-tour/blob/master/src/components/default-ui).
 
 ```js
 const TooltipComponent = () => {
@@ -278,7 +278,7 @@ const customSvgPath = (args) => {
 The components wrapped inside `TourGuideStep`, will receive a `TourGuide` prop with a mutable `ref` and `onLayou` which the outermost rendered element of the component or the element that you want the tooltip be shown around, must extend.
 
 ```js
-import { TourGuideStep } from 'react-native-tour-guide';
+import { TourGuideStep } from 'react-native-guided-tour';
 
 const CustomComponent = ({ TourGuide }) => (
   <View {...TourGuide}>
@@ -361,12 +361,12 @@ List of available events is:
 
 - `start` — TourGuide tutorial has started.
 - `stop` — TourGuide tutorial has ended or skipped.
-- `stepChange` — Next step is triggered. Passes [`Step`](https://github.com/AdamLee321/react-native-tour-guide/blob/main/src/types.ts) instance as event handler argument.
+- `stepChange` — Next step is triggered. Passes [`Step`](https://github.com/AdamLee321/react-native-guided-tour/blob/main/src/types.ts) instance as event handler argument.
 
 **Example:**
 
 ```js
-import { useTourGuide } from "react-native-tour-guide";
+import { useTourGuide } from "react-native-guided-tour";
 
 const HomeScreen = () => {
   const { TourGuideEvents } = useTourGuide();

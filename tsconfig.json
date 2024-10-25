@@ -2,7 +2,7 @@
   "compilerOptions": {
     "rootDir": ".",
     "paths": {
-      "react-native-tour-guide": ["./src/index"]
+      "react-native-guided-tour": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

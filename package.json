@@ -1,5 +1,5 @@
 {
-  "name": "react-native-tour-guide",
+  "name": "react-native-guided-tour",
   "version": "0.1.2",
   "description": "A library to aid walking users through your app and its features",
   "source": "./src/index.tsx",
@@ -37,7 +37,7 @@
     "!**/.*"
   ],
   "scripts": {
-    "example": "yarn workspace react-native-tour-guide-example",
+    "example": "yarn workspace react-native-guided-tour-example",
     "test": "jest",
     "typecheck": "tsc",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
@@ -52,14 +52,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AdamLee321/react-native-tour-guide.git"
+    "url": "git+https://github.com/AdamLee321/react-native-guided-tour.git"
   },
   "author": "Adam Lee <adam@hkc.ie> (https://github.com/AdamLee321)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/AdamLee321/react-native-tour-guide/issues"
+    "url": "https://github.com/AdamLee321/react-native-guided-tour/issues"
   },
-  "homepage": "https://github.com/AdamLee321/react-native-tour-guide#readme",
+  "homepage": "https://github.com/AdamLee321/react-native-guided-tour#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },

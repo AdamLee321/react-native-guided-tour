@@ -1,5 +1,5 @@
 {
-  "name": "react-native-tour-guide-example",
+  "name": "react-native-guided-tour-example",
   "version": "1.0.0",
   "main": "expo/AppEntry.js",
   "scripts": {

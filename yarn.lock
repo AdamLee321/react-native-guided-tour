@@ -12708,9 +12708,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-tour-guide-example@workspace:example":
+"react-native-guided-tour-example@workspace:example":
   version: 0.0.0-use.local
-  resolution: "react-native-tour-guide-example@workspace:example"
+  resolution: "react-native-guided-tour-example@workspace:example"
   dependencies:
     "@babel/core": ^7.20.0
     "@expo/metro-runtime": ~3.2.3
@@ -12724,9 +12724,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"react-native-tour-guide@workspace:.":
+"react-native-guided-tour@workspace:.":
   version: 0.0.0-use.local
-  resolution: "react-native-tour-guide@workspace:."
+  resolution: "react-native-guided-tour@workspace:."
   dependencies:
     "@commitlint/config-conventional": ^17.0.2
     "@evilmartians/lefthook": ^1.5.0

@@ -14,7 +14,7 @@ import {
   TourGuideStep,
   walkthroughable,
   useTourGuide,
-} from 'react-native-tour-guide';
+} from 'react-native-guided-tour';
 
 const WalkthroughableText = walkthroughable(Text);
 const WalkthroughableImage = walkthroughable(Image);
