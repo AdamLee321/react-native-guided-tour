@@ -2,14 +2,8 @@
 
 <div align="center">
   <p align="center">
-    <a href="https://github.com/adamlee321/react-native-guided-tour/actions/workflows/release.yml">
-      <img src="https://img.shields.io/github/actions/workflow/status/mohebifar/react-native-guided-tour/release.yml?branch=master&style=flat-square" alt="Build Status" />
-    </a>
     <a href="https://www.npmjs.com/package/react-native-guided-tour">
       <img src="https://img.shields.io/npm/v/react-native-guided-tour.svg?style=flat-square" alt="NPM Version" />
-    </a>
-    <a href="https://www.npmjs.com/package/react-native-guided-tour">
-      <img src="https://img.shields.io/npm/dm/react-native-guided-tour.svg?style=flat-square" alt="NPM Downloads" />
     </a>
   </p>
 </div>
