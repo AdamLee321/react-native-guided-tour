@@ -1,4 +1,4 @@
-<h1 align="center">React Native Tour Guide</h1>
+<h1 align="center">React Native Guided Tour</h1>
 
 <div align="center">
   <p align="center">
@@ -9,7 +9,7 @@
 </div>
 
 <p align="center">
-  Step-by-step walkthrough for your react native app!
+  A step-by-step walkthrough for enhancing user onboarding in your React Native app!
 </p>
 
 ## Installation
@@ -26,7 +26,7 @@ npm install --save react-native-guided-tour
 
 ## Usage
 
-Wrap the portion of your app that you want to use tour guide with inside `<TourGuideProvider>`:
+Wrap the part of your app that you want to guide with `<TourGuideProvider>`:
 
 ```js
 import { TourGuideProvider } from 'react-native-guided-tour';
@@ -40,7 +40,7 @@ const AppWithTourGuide = () => {
 };
 ```
 
-Before defining walkthrough steps for your react elements, you must make them `walkthroughable`. The easiest way to do that for built-in react native components, is using the `walkthroughable` HOC. Then you must wrap the element with `TourGuideStep`.
+To define steps for your tour, wrap each target component with TourGuideStep and make it “walkthroughable”:
 
 ```jsx
 import {
@@ -320,7 +320,47 @@ In order to adjust vertical position pass `verticalOffset` to the `TourGuideProv
 
 ### Triggering the tutorial
 
-Use `const {start} = useTourGuide()` to trigger the tutorial. You can either invoke it with a touch event or in `useEffect` to start after the comopnent mounts. Note that the component and all its descendants must be mounted before starting the tutorial since the `TourGuideStep`s need to be registered first.
+Use `const {start} = useTourGuide()` to trigger the tutorial. You can either invoke it with a touch event or in `useEffect` to start after the component mounts. Note that the component and all its descendants must be mounted before starting the tutorial since the `TourGuideStep`s need to be registered first. In some cases, you might want to start the tour as soon as key components are laid out rather than waiting for all components to fully mount. Using the onLayout prop on a container View is a great way to ensure that the tour starts as soon as the layout for that specific section is complete.
+
+### Triggering the Tutorial on Layout Completion
+
+```js
+import React, { useRef, useEffect } from 'react';
+import { View, Text } from 'react-native';
+import {
+  TourGuideProvider,
+  useTourGuide,
+  TourGuideStep,
+} from 'react-native-guided-tour';
+
+const HomeScreen = () => {
+  const { start } = useTourGuide();
+  const hasStartedTour = useRef(false);
+
+  const handleLayout = () => {
+    if (!hasStartedTour.current) {
+      start();
+      hasStartedTour.current = true;
+    }
+  };
+
+  return (
+    <View onLayout={handleLayout}>
+      <TourGuideStep text="Welcome to the app!" order={1} name="welcome">
+        <Text>Home Screen Content</Text>
+      </TourGuideStep>
+    </View>
+  );
+};
+
+const App = () => (
+  <TourGuideProvider>
+    <HomeScreen />
+  </TourGuideProvider>
+);
+
+export default App;
+```
 
 ### Usage inside a ScrollView
 
@@ -360,31 +400,25 @@ List of available events is:
 **Example:**
 
 ```js
-import { useTourGuide } from "react-native-guided-tour";
+import { useTourGuide } from 'react-native-guided-tour';
 
 const HomeScreen = () => {
   const { TourGuideEvents } = useTourGuide();
 
   useEffect(() => {
-    const listener = () => {
-      // TourGuide tutorial finished!
-    };
+    const onStop = () => console.log('Tour ended');
 
-    TourGuideEvents.on("stop", listener);
+    TourGuideEvents.on('stop', onStop);
 
     return () => {
-      TourGuideEvents.off("stop", listener)
+      TourGuideEvents.off('stop', onStop);
     };
   }, []);
-
-  return (
-    // ...
-  );
-}
+};
 ```
 
 ## Contributing
 
-Issues and Pull Requests are always welcome.
+We welcome issues and pull requests. If you’re interested in becoming a maintainer, please reach out by email or by opening an issue. Regular contributors are encouraged to get involved!
 
-If you are interested in becoming a maintainer, get in touch with us by sending an email or opening an issue. You should already have code merged into the project. Active contributors are encouraged to get in touch.
+This version refines language for clarity, groups related sections logically, and ensures consistent formatting. Let me know if there’s anything else specific you’d like to improve!
